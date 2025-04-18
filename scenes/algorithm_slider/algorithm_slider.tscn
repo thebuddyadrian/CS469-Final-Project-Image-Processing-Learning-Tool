@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1ojgju21jqk0"]
+
+[ext_resource type="Script" uid="uid://br8jybhejfht7" path="res://scenes/algorithm_slider/algorithm_slider.gd" id="1_bbfei"]
+
+[node name="AlgorithmSlider" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+script = ExtResource("1_bbfei")
+shader = "gaussian_blur"
+
+[node name="AlgorithmName" type="Label" parent="."]
+layout_mode = 2
+text = "Algorithm"
+
+[node name="ValueSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.01
+
+[node name="AppliedLabel" type="Label" parent="ValueSlider"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Applied shaders can no longer be changed."
+horizontal_alignment = 1
+
+[node name="ValueSpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+allow_greater = true
+
+[node name="RemoveButton" type="Button" parent="."]
+layout_mode = 2
+text = "Remove"
+
+[connection signal="value_changed" from="ValueSlider" to="." method="_on_value_slider_value_changed"]
+[connection signal="value_changed" from="ValueSpinBox" to="." method="_on_value_spin_box_value_changed"]
+[connection signal="pressed" from="RemoveButton" to="." method="_on_remove_button_pressed"]

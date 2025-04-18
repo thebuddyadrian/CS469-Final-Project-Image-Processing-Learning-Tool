@@ -20,7 +20,3 @@ config/icon="res://icon.png"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-
-[rendering]
-
-renderer/rendering_method="mobile"

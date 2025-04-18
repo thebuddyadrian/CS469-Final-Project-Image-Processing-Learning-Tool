@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk6hcyg4ph6xs"]
+[gd_scene load_steps=4 format=3 uid="uid://bk6hcyg4ph6xs"]
 
+[ext_resource type="Script" uid="uid://x302m84ndusj" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bqv4ug5qbr2ka" path="res://images/Bliss_(Windows_XP).png" id="1_ig7tw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig7tw"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="Theme" id="Theme_ig7tw"]
+default_font_size = 18
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,6 +13,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_ig7tw")
+script = ExtResource("1_0xm2m")
 
 [node name="ImageViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -21,9 +24,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -314.0
-offset_top = -314.0
+offset_top = -251.0
 offset_right = 326.0
-offset_bottom = 46.0
+offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -31,14 +34,6 @@ grow_vertical = 2
 handle_input_locally = false
 size = Vector2i(640, 360)
 render_target_update_mode = 4
-
-[node name="BG" type="Panel" parent="ImageViewportContainer/ImageViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ig7tw")
 
 [node name="TextureRect" type="TextureRect" parent="ImageViewportContainer/ImageViewport"]
 anchors_preset = 15
@@ -49,84 +44,26 @@ grow_vertical = 2
 texture = ExtResource("1_ig7tw")
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="AlgorithmContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 326.0
-offset_top = 414.0
+offset_top = 477.0
 offset_right = 966.0
-offset_bottom = 656.0
+offset_bottom = 719.0
 
-[node name="AlgorithmSlider1" type="HBoxContainer" parent="VBoxContainer"]
+[node name="AddAlgorithm" type="HBoxContainer" parent="AlgorithmContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/AlgorithmSlider1"]
+[node name="AlgorithmsDropdown" type="OptionButton" parent="AlgorithmContainer/AddAlgorithm"]
 layout_mode = 2
-text = "Algorithm Name"
+selected = 0
+item_count = 1
+popup/item_0/text = "---Select Algorithm---"
+popup/item_0/id = 0
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/AlgorithmSlider1"]
+[node name="AddButton" type="Button" parent="AlgorithmContainer/AddAlgorithm"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
+text = "+ Add"
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/AlgorithmSlider1"]
-layout_mode = 2
-
-[node name="AlgorithmSlider2" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/AlgorithmSlider2"]
-layout_mode = 2
-text = "Algorithm Name"
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer/AlgorithmSlider2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/AlgorithmSlider2"]
-layout_mode = 2
-
-[node name="AlgorithmSlider3" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/AlgorithmSlider3"]
-layout_mode = 2
-text = "Algorithm Name"
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer/AlgorithmSlider3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/AlgorithmSlider3"]
-layout_mode = 2
-
-[node name="AlgorithmSlider4" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/AlgorithmSlider4"]
-layout_mode = 2
-text = "Algorithm Name"
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer/AlgorithmSlider4"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/AlgorithmSlider4"]
-layout_mode = 2
-
-[node name="AlgorithmSlider5" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/AlgorithmSlider5"]
-layout_mode = 2
-text = "Algorithm Name"
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer/AlgorithmSlider5"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/AlgorithmSlider5"]
-layout_mode = 2
+[connection signal="pressed" from="AlgorithmContainer/AddAlgorithm/AddButton" to="." method="_on_add_button_pressed"]

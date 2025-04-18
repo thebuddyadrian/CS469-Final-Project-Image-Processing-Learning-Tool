@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbmt1nrrsmmbc"]
+
+[ext_resource type="Shader" uid="uid://dkj82w28x6oj0" path="res://shaders/gaussian_blur.gdshader" id="1_aaasg"]
+[ext_resource type="Texture2D" uid="uid://bqv4ug5qbr2ka" path="res://images/Bliss_(Windows_XP).png" id="2_aaasg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ngf2"]
+shader = ExtResource("1_aaasg")
+shader_parameter/sigma = 0.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_3ngf2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_aaasg")
