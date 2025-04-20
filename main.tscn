@@ -31,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ImageViewport" type="SubViewport" parent="ImageViewportContainer"]
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(640, 360)
 render_target_update_mode = 4
@@ -42,6 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ig7tw")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="AlgorithmContainer" type="VBoxContainer" parent="."]

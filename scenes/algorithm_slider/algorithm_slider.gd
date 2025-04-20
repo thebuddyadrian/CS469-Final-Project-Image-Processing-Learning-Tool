@@ -9,8 +9,10 @@ extends HBoxContainer
 
 var applied: bool = false
 
-signal remove # Emitted when this slider should be removed and the applied shader should be undone
+signal remove(shader) # Emitted when this slider should be removed and the applied shader should be undone
 signal changed(shader, value) # Emitted when the value of this slider changes
+signal move_up(shader)
+signal move_down(shader)
 
 
 func _ready() -> void:
@@ -40,4 +42,11 @@ func set_value(p_value: float):
 
 
 func _on_remove_button_pressed() -> void:
-	remove.emit()
+	remove.emit(shader)
+
+
+func _on_move_up_pressed() -> void:
+	move_up.emit(shader)
+
+func _on_move_down_pressed() -> void:
+	move_down.emit(shader)

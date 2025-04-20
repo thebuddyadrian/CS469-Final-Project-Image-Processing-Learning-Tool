@@ -1,1 +1,8 @@
 res://main.tscn
+res://shaders/gaussian_blur.gdshader
+res://shaders/contrast.gdshader
+res://scenes/algorithm_slider/algorithm_slider.tscn
+res://scenes/texture_rect.tscn
+res://main.gd
+res://scenes/algorithm_slider/algorithm_slider.gd
+res://shaders/noise.gdshader
