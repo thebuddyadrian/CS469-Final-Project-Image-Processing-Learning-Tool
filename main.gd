@@ -55,8 +55,9 @@ func _on_add_button_pressed() -> void:
 	slider.connect("remove", _on_algorithm_remove)
 	slider.connect("move_up", _on_algorithm_move_up)
 	slider.connect("move_down", _on_algorithm_move_down)
-	slider.changed.emit(slider.shader) # Make sure the image responds to the default value
 	_instance_shader_filter(shader_name)
+	slider.changed.emit(slider.shader, slider.value_slider.value) # Make sure the image responds to the default value
+
 
 
 func _instance_shader_filter(shader_name: String) -> void:
