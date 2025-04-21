@@ -8,9 +8,11 @@ extends HBoxContainer
 @onready var algorithm_name: Label = $AlgorithmName
 
 var applied: bool = false
+var ID: int = 0
+var nameOverride: String = "null"
 
 signal remove(shader) # Emitted when this slider should be removed and the applied shader should be undone
-signal changed(shader, value) # Emitted when the value of this slider changes
+signal changed(shader, value, ID) # Emitted when the value of this slider changes
 signal move_up(shader)
 signal move_down(shader)
 
@@ -23,13 +25,13 @@ func _ready() -> void:
 # Makes sure the Slider and SpinBox stay in sync
 func _on_value_slider_value_changed(value:float) -> void:
 	value_spin_box.value = value
-	changed.emit(shader, value)
+	changed.emit(shader, value, ID)
 
 
 # Makes sure the Slider and SpinBox stay in sync
 func _on_value_spin_box_value_changed(value:float) -> void:
 	value_slider.value = value
-	changed.emit(shader, value)
+	changed.emit(shader, value, ID)
 
 
 func get_value() -> float:
