@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dump44sjdnro"]
+
+[ext_resource type="Script" uid="uid://d2mcdhi6efyof" path="res://scenes/algorithm_editor/parameter_slider/parameter_slider.gd" id="1_owltg"]
+
+[node name="ParameterSlider" type="HBoxContainer"]
+offset_right = 759.0
+offset_bottom = 40.0
+script = ExtResource("1_owltg")
+
+[node name="ParameterName" type="Label" parent="."]
+layout_mode = 2
+text = "Parameter:"
+
+[node name="ValueSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 0.01
+
+[node name="ValueEntry" type="SpinBox" parent="."]
+layout_mode = 2
+step = 0.01
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 2
+text = "Reset"
+
+[connection signal="changed" from="ValueSlider" to="." method="_on_value_slider_changed"]
+[connection signal="value_changed" from="ValueSlider" to="." method="_on_value_slider_value_changed"]
+[connection signal="changed" from="ValueEntry" to="." method="_on_value_entry_changed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

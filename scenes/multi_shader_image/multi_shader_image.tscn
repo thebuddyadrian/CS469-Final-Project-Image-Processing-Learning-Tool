@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bla1ogymi3cdi"]
+
+[ext_resource type="Texture2D" uid="uid://bqv4ug5qbr2ka" path="res://images/Bliss_(Windows_XP).png" id="1_a2a78"]
+[ext_resource type="Script" uid="uid://b2haj4ue6cyiw" path="res://scenes/multi_shader_image/multi_shader_image.gd" id="1_wieso"]
+
+[node name="MultiShaderImage" type="SubViewportContainer"]
+offset_right = 640.0
+offset_bottom = 360.0
+script = ExtResource("1_wieso")
+
+[node name="ImageViewport" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="ImageViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.9336
+offset_right = -95.9336
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_a2a78")
+stretch_mode = 5
+
+[node name="ShaderHolder" type="Control" parent="ImageViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

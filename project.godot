@@ -16,7 +16,12 @@ run/main_scene="uid://bk6hcyg4ph6xs"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://autoload/Global.gd"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"

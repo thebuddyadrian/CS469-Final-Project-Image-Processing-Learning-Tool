@@ -8,7 +8,7 @@ void fragment() {
 	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
 	COLOR.r = 1.0 - COLOR.r;
 	COLOR.g = 1.0 - COLOR.g;
-	COLOR.b = 1.0 - COLOR.b;	
+	COLOR.b = 1.0 - COLOR.b;
 }
 
 //void light() {

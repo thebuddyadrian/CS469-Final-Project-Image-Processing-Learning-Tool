@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk6hcyg4ph6xs"]
+[gd_scene load_steps=5 format=3 uid="uid://bk6hcyg4ph6xs"]
 
 [ext_resource type="Script" uid="uid://x302m84ndusj" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://bqv4ug5qbr2ka" path="res://images/Bliss_(Windows_XP).png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bla1ogymi3cdi" path="res://scenes/multi_shader_image/multi_shader_image.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://0vcyinc8pjse" path="res://scenes/algorithm_manager/algorithm_manager.tscn" id="3_h2yge"]
 
 [sub_resource type="Theme" id="Theme_ig7tw"]
 default_font_size = 18
@@ -16,56 +17,15 @@ grow_vertical = 2
 theme = SubResource("Theme_ig7tw")
 script = ExtResource("1_0xm2m")
 
-[node name="ImageViewportContainer" type="SubViewportContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -314.0
-offset_top = -251.0
-offset_right = 326.0
-offset_bottom = 109.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ImageViewport" type="SubViewport" parent="ImageViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(640, 360)
-render_target_update_mode = 4
-
-[node name="TextureRect" type="TextureRect" parent="ImageViewportContainer/ImageViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_ig7tw")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AlgorithmContainer" type="VBoxContainer" parent="."]
+[node name="MultiShaderImage" parent="." instance=ExtResource("2_0xm2m")]
 layout_mode = 0
-offset_left = 326.0
-offset_top = 477.0
-offset_right = 966.0
-offset_bottom = 719.0
 
-[node name="AddAlgorithm" type="HBoxContainer" parent="AlgorithmContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="AlgorithmsDropdown" type="OptionButton" parent="AlgorithmContainer/AddAlgorithm"]
-layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "---Select Algorithm---"
-popup/item_0/id = 0
-
-[node name="AddButton" type="Button" parent="AlgorithmContainer/AddAlgorithm"]
-layout_mode = 2
-text = "+ Add"
-
-[connection signal="pressed" from="AlgorithmContainer/AddAlgorithm/AddButton" to="." method="_on_add_button_pressed"]
+[node name="AlgorithmManager" parent="." instance=ExtResource("3_h2yge")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -507.0
+offset_right = 0.0
+offset_bottom = 716.0
+grow_horizontal = 0
