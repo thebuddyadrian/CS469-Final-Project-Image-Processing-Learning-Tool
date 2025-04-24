@@ -46,6 +46,13 @@ func remove_shader(idx: int):
 	shader_holder.remove_child(shader_holder.get_child(idx))
 
 
+# Can be used to temporarily disable a shader
+func set_shader_visible(idx: int, visible: bool):
+	if shader_holder.get_child_count() <= idx:
+		return
+	shader_holder.get_child(idx).visible = visible
+
+
 func get_shader_name(idx: int) -> String:
 	return shader_holder.get_child(idx).shader
 

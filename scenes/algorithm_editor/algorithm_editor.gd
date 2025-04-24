@@ -10,8 +10,10 @@ const ParameterSlider = preload("res://scenes/algorithm_editor/parameter_slider/
 @onready var algorithm_name: Label = %AlgorithmName
 @onready var parameter_sliders: VBoxContainer = %ParameterSliders
 @onready var hbox_container: HBoxContainer = $HBoxContainer
+@onready var enabled_button: Button = %EnabledButton
 
 signal remove() # Emitted when this slider should be removed and the applied shader should be undone
+signal toggle(toggle_on) # Emitted when this algorithm should be temporarily disabled/enabled
 signal parameter_changed(parameter, value) # Emitted when a parameter changes
 signal move_up()
 signal move_down()
@@ -51,3 +53,11 @@ func _on_move_up_pressed() -> void:
 # To tell the parent we should be moved down in the list
 func _on_move_down_pressed() -> void:
 	move_down.emit()
+
+
+func _on_enabled_button_toggled(toggled_on:bool) -> void:
+	if toggled_on:
+		enabled_button.icon = preload("res://assets/GuiVisibilityVisible.svg")
+	else:
+		enabled_button.icon = preload("res://assets/GuiVisibilityHidden.svg")
+	toggle.emit(toggled_on)

@@ -10,3 +10,4 @@ func _ready() -> void:
 	algorithm_manager.algorithm_moved_up.connect(multi_shader_image.move_shader_up)
 	algorithm_manager.algorithm_moved_down.connect(multi_shader_image.move_shader_down)
 	algorithm_manager.algorithm_parameter_changed.connect(multi_shader_image.change_shader_parameter)
+	algorithm_manager.algorithm_toggled.connect(multi_shader_image.set_shader_visible)

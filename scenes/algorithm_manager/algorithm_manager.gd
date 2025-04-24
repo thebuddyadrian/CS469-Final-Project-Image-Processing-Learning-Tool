@@ -8,6 +8,7 @@ const AlgorithmEditor = preload("res://scenes/algorithm_editor/algorithm_editor.
 
 signal algorithm_added(shader_name)
 signal algorithm_removed(index)
+signal algorithm_toggled(index, toggled_on)
 signal algorithm_parameter_changed(index, parameter, value)
 signal algorithm_moved_up(index)
 signal algorithm_moved_down(index)
@@ -32,6 +33,7 @@ func _on_add_button_pressed() -> void:
 	algorithm_editor.move_down.connect(_on_algorithm_move_down.bind(algorithm_editor))
 	algorithm_editor.move_up.connect(_on_algorithm_move_up.bind(algorithm_editor))
 	algorithm_editor.parameter_changed.connect(_on_algorithm_parameter_changed.bind(algorithm_editor))
+	algorithm_editor.toggle.connect(_on_algorithm_toggle.bind(algorithm_editor))
 	algorithm_added.emit(shader_name)
 	algorithm_editors.add_child(algorithm_editor)
 
@@ -40,6 +42,11 @@ func _on_add_button_pressed() -> void:
 func _on_algorithm_remove(algorithm_editor: Node) -> void:
 	algorithm_editor.queue_free()
 	algorithm_removed.emit(algorithm_editor.get_index())
+
+
+# When the child AlgorithmEditor is toggled on or off
+func _on_algorithm_toggle(toggled_on: bool, algorithm_editor: Node) -> void:
+	algorithm_toggled.emit(algorithm_editor.get_index(), toggled_on)
 
 
 # When an Algorithm requests to be moved up
