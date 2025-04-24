@@ -94,3 +94,7 @@ func move_shader_down(idx: int):
 	if back_buffer_copy.get_index() == shader_holder.get_child_count() - 1:
 		return
 	shader_holder.move_child(back_buffer_copy, idx + 1)
+
+
+func choose_image(texture: Texture):
+	texture_rect.texture = texture
