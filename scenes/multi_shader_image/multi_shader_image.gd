@@ -18,9 +18,6 @@ func _process(_delta):
 	var canvas_aspect_ratio = canvas_size.x/canvas_size.y
 	var image_aspect_ratio = image_size.x/image_size.y
 
-	print("Image ratio: %s" % image_aspect_ratio)
-	print("Canvas ratio: %s" % canvas_aspect_ratio)
-
 	if image_aspect_ratio <= canvas_aspect_ratio:
 		texture_rect.size.y = canvas_size.y
 		texture_rect.size.x = floor(image_size.x * canvas_size_ratio.y)
