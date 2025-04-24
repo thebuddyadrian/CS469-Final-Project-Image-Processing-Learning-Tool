@@ -7,23 +7,38 @@ extends SubViewportContainer
 @onready var shader_holder: Control = $ImageViewport/ShaderHolder
 
 
+# Make sure texture rect always fits within aspect ratio
+# We could use the "Keep Aspect" option of TextureRect, but we want the actual control to be the same exact size of the image, that way filters can simply match the size of the control
 func _process(_delta):
 	size = canvas_size
 	image_viewport.size = canvas_size
 	
 	var image_size: Vector2 = texture_rect.texture.get_size()
 	var canvas_size_ratio: Vector2 = canvas_size / image_size # How many times bigger the canvas than the image
+	var canvas_aspect_ratio = canvas_size.x/canvas_size.y
+	var image_aspect_ratio = image_size.x/image_size.y
 
-	texture_rect.size.y = canvas_size.y
-	texture_rect.size.x = image_size.x * canvas_size_ratio.y
+	print("Image ratio: %s" % image_aspect_ratio)
+	print("Canvas ratio: %s" % canvas_aspect_ratio)
 
-	texture_rect.position.y = 0
-	texture_rect.position.x = (canvas_size.x - texture_rect.size.x) / 2
+	if image_aspect_ratio <= canvas_aspect_ratio:
+		texture_rect.size.y = canvas_size.y
+		texture_rect.size.x = floor(image_size.x * canvas_size_ratio.y)
+
+		texture_rect.position.y = 0
+		texture_rect.position.x = floor((canvas_size.x - texture_rect.size.x) / 2)
+	else:
+		texture_rect.size.x = canvas_size.x
+		texture_rect.size.y = floor(image_size.y * canvas_size_ratio.x)
+
+		texture_rect.position.x = 0
+		texture_rect.position.y = floor((canvas_size.y - texture_rect.size.y) / 2)
 
 
 func add_shader(shader_name: String):
 	# A back buffer copy is needed to allow multiple shaders to stack
 	var back_buffer_copy := BackBufferCopy.new()
+	# Copy the size of the texture rect, to make sure the filter only covers the actual image
 	back_buffer_copy.rect.size = texture_rect.size
 	back_buffer_copy.rect.position = texture_rect.position
 	back_buffer_copy.name = shader_name
