@@ -155,6 +155,31 @@ var algorithms = {
 			"min_value": 0.00,
 			"max_value": 255.00,
 			"default_value": 255.0
+		}
+		]
+	},
+	"unsharp_masking": {
+		"num_params": 1,
+		"parameters": [{
+			"param": "sigma", # Which param will be changed by the slider
+			"min_value": 0.0, # Min value for the slider
+			"max_value": 8.0, # Max value for the slider
+			"default_value": 0.0, # Default value for the slider
 		}]
-	}
+	},
+	"highboost_filtering": {
+		"num_params": 1,
+		"parameters": [{
+			"param": "sigma", # Which param will be changed by the slider
+			"min_value": 0.0, # Min value for the slider
+			"max_value": 8.0, # Max value for the slider
+			"default_value": 0.0, # Default value for the slider
+		},
+		{
+			"param": "mask_contribution", # Which param will be changed by the slider
+			"min_value": 0.0, # Min value for the slider
+			"max_value": 5.0, # Max value for the slider
+			"default_value": 1.0, # Default value for the slider
+		}]
+	},
 }
