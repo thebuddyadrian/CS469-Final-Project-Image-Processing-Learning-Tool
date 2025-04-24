@@ -31,7 +31,7 @@ func _on_value_slider_value_changed(value:float) -> void:
 
 # Makes sure the Slider and SpinBox stay in sync
 func _on_value_entry_value_changed(value:float) -> void:
-	value_entry.value = value
+	value_slider.value = value
 	changed.emit(parameter, value)
 
 
