@@ -13,27 +13,9 @@ var algorithms = {
 		}]
 	},
 	"contrast": {
-		"num_params": 1,
-		"parameters": [{
-			"param": "multiplier",
-			"min_value": 0.0,
-			"max_value": 3.0,
-			"default_value": 1.0,
-		}]
-	},
-	"noise": {
-		"num_params": 1,
-		"parameters": [{
-			"param": "noise_intensity",
-			"min_value": 0.0,
-			"max_value": 1.0,
-			"default_value": 0.0,
-		}]
-	},
-	"brightness": {
 		"num_params": 4,
 		"parameters": [{
-			"param": "brightness_mult",
+			"param": "multiplier",
 			"min_value": 0.0,
 			"max_value": 5.0,
 			"default_value": 1.0,
@@ -55,6 +37,48 @@ var algorithms = {
 			"min_value": 0.0,
 			"max_value": 5.0,
 			"default_value": 1.0,
+			}]
+	},
+	"noise": {
+		"num_params": 2,
+		"parameters": [{
+			"param": "noise_intensity",
+			"min_value": 0.0,
+			"max_value": 1.0,
+			"default_value": 0.0,
+		},
+		{
+			"param": "seed",
+			"min_value": 0.0,
+			"max_value": 1000.0,
+			"default_value": 0.0,
+		}]
+	},
+	"brightness": {
+		"num_params": 4,
+		"parameters": [{
+			"param": "adjustment",
+			"min_value": -1.0,
+			"max_value": 1.0,
+			"default_value": 0.0,
+			},
+			{
+			"param": "skew_red",
+			"min_value": -1.0,
+			"max_value": 1.0,
+			"default_value": 0.0,
+			},
+			{
+			"param": "skew_green",
+			"min_value": -1.0,
+			"max_value": 1.0,
+			"default_value": 0.0,
+			},
+			{
+			"param": "skew_blue",
+			"min_value": -1.0,
+			"max_value": 1.0,
+			"default_value": 0.0,
 			}]
 	},
 	"thresholding": {
