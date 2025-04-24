@@ -7,9 +7,19 @@ extends SubViewportContainer
 @onready var shader_holder: Control = $ImageViewport/ShaderHolder
 
 
+
+func _ready() -> void:
+	apply_canvas_size()
+
+
+func _process(_delta):
+	if Engine.is_editor_hint():
+		apply_canvas_size()
+
+
 # Make sure texture rect always fits within aspect ratio
 # We could use the "Keep Aspect" option of TextureRect, but we want the actual control to be the same exact size of the image, that way filters can simply match the size of the control
-func _process(_delta):
+func apply_canvas_size():
 	size = canvas_size
 	image_viewport.size = canvas_size
 	
@@ -98,3 +108,11 @@ func move_shader_down(idx: int):
 
 func choose_image(texture: Texture):
 	texture_rect.texture = texture
+
+	apply_canvas_size()
+
+	# Update all shaders to fit the new image
+	for back_buffer_copy in shader_holder.get_children():
+		back_buffer_copy.rect.size = texture_rect.size
+		back_buffer_copy.rect.position = texture_rect.position
+		back_buffer_copy.get_node("ColorRect").set_anchors_and_offsets_preset(PRESET_FULL_RECT)
