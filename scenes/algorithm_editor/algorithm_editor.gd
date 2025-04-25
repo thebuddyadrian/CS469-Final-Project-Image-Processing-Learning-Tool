@@ -24,7 +24,7 @@ signal select() # Emitted when this element was clicked, requesting to be marked
 
 
 func _ready() -> void:
-	algorithm_name.text = shader.to_pascal_case()
+	algorithm_name.text = shader.capitalize()
 	# Initialize parameter sliders
 	for param_data in Global.algorithms[shader]["parameters"]:
 		var parameter_slider = ParameterSlider.instantiate()

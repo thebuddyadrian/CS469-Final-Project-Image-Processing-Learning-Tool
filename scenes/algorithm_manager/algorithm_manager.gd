@@ -22,7 +22,7 @@ signal algorithm_moved_down(index)
 # Initialize algorithm dropdown
 func _ready() -> void:
 	for algorithm in Global.algorithms.keys():
-		algorithms_dropdown.add_item(algorithm.to_pascal_case())
+		algorithms_dropdown.add_item(algorithm.capitalize())
 
 
 # Adds a slider for the shader as well as a Co `	lorRect filter

@@ -13,7 +13,7 @@ signal changed(parameter, value) # Emitted when the value of this slider changes
 
 
 func _ready() -> void:
-	parameter_name.text = parameter.to_pascal_case()
+	parameter_name.text = parameter.capitalize()
 	value_entry.min_value = min_value
 	value_slider.min_value = min_value
 	value_entry.max_value = max_value
