@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk6hcyg4ph6xs"]
+[gd_scene load_steps=7 format=3 uid="uid://bk6hcyg4ph6xs"]
 
 [ext_resource type="Script" uid="uid://x302m84ndusj" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bla1ogymi3cdi" path="res://scenes/multi_shader_image/multi_shader_image.tscn" id="2_0xm2m"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="Theme" id="Theme_ig7tw"]
 default_font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
+font_size = 18
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -19,15 +25,19 @@ script = ExtResource("1_0xm2m")
 
 [node name="MultiShaderImage" parent="." instance=ExtResource("2_0xm2m")]
 layout_mode = 0
+offset_right = 600.0
+offset_bottom = 400.0
+scale = Vector2(2, 2)
+canvas_size = Vector2(600, 400)
 
 [node name="AlgorithmManager" parent="." instance=ExtResource("3_h2yge")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -507.0
+offset_left = -720.0
 offset_right = 0.0
-offset_bottom = 716.0
+offset_bottom = 1080.0
 grow_horizontal = 0
 
 [node name="FileDialog" type="FileDialog" parent="."]
@@ -44,6 +54,33 @@ layout_mode = 0
 offset_right = 131.0
 offset_bottom = 34.0
 text = "Choose Image"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 0
+offset_top = 839.0
+offset_right = 1200.0
+offset_bottom = 1080.0
+current_tab = 0
+
+[node name="Description" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="AlgorithmName" type="Label" parent="TabContainer/Description"]
+layout_mode = 1
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 226.0
+offset_bottom = 60.0
+label_settings = SubResource("LabelSettings_h2yge")
+
+[node name="Description" type="Label" parent="TabContainer/Description"]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 60.0
+offset_right = 1166.0
+offset_bottom = 178.0
+label_settings = SubResource("LabelSettings_1bvp3")
 
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="ChooseImage" to="." method="_on_choose_image_pressed"]

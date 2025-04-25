@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ojgju21jqk0"]
+[gd_scene load_steps=6 format=3 uid="uid://d1ojgju21jqk0"]
 
 [ext_resource type="Script" uid="uid://br8jybhejfht7" path="res://scenes/algorithm_editor/algorithm_editor.gd" id="1_cn3q2"]
 [ext_resource type="Texture2D" uid="uid://720rq6pccuy6" path="res://assets/arrow_up.png" id="2_up4is"]
 [ext_resource type="Texture2D" uid="uid://cf740g51nsj5f" path="res://assets/arrow_down.png" id="3_kjdv1"]
 [ext_resource type="Texture2D" uid="uid://cmj4njmpw0hkt" path="res://assets/GuiVisibilityVisible.svg" id="4_y0s4s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0s4s"]
+bg_color = Color(0.6, 0.6, 0.6, 0.156863)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="AlgorithmEditor" type="PanelContainer"]
 custom_minimum_size = Vector2(271, 64)
@@ -13,6 +29,11 @@ offset_right = -704.0
 offset_bottom = 64.0
 grow_horizontal = 2
 script = ExtResource("1_cn3q2")
+
+[node name="SelectedOutline" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0s4s")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -49,6 +70,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="EnabledButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -72,6 +94,7 @@ text = "Remove"
 unique_name_in_owner = true
 layout_mode = 2
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="HBoxContainer/Move/MoveUp" to="." method="_on_move_up_pressed"]
 [connection signal="pressed" from="HBoxContainer/Move/MoveDown" to="." method="_on_move_down_pressed"]
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/HBoxContainer/EnabledButton" to="." method="_on_enabled_button_toggled"]

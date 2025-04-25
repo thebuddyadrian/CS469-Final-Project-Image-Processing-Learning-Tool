@@ -6,12 +6,17 @@ const AlgorithmEditor = preload("res://scenes/algorithm_editor/algorithm_editor.
 @onready var algorithms_dropdown: OptionButton = %AlgorithmsDropdown
 @onready var algorithm_editors: VBoxContainer = %AlgorithmEditors
 
+# The currently selected AlgorithmEditor node
+var currently_selected
+
 signal algorithm_added(shader_name)
 signal algorithm_removed(index)
 signal algorithm_toggled(index, toggled_on)
+signal algorithm_selected(index, shader_name)
 signal algorithm_parameter_changed(index, parameter, value)
 signal algorithm_moved_up(index)
 signal algorithm_moved_down(index)
+
 
 
 # Initialize algorithm dropdown
@@ -20,7 +25,7 @@ func _ready() -> void:
 		algorithms_dropdown.add_item(algorithm.to_pascal_case())
 
 
-# Adds a slider for the shader as well as a ColorRect filter
+# Adds a slider for the shader as well as a Co `	lorRect filter
 func _on_add_button_pressed() -> void:
 	# Index 0 is the placeholder "Select Algorithm" text
 	if algorithms_dropdown.selected == 0:
@@ -34,6 +39,7 @@ func _on_add_button_pressed() -> void:
 	algorithm_editor.move_up.connect(_on_algorithm_move_up.bind(algorithm_editor))
 	algorithm_editor.parameter_changed.connect(_on_algorithm_parameter_changed.bind(algorithm_editor))
 	algorithm_editor.toggle.connect(_on_algorithm_toggle.bind(algorithm_editor))
+	algorithm_editor.select.connect(_on_algorithm_select.bind(algorithm_editor))
 	algorithm_added.emit(shader_name)
 	algorithm_editors.add_child(algorithm_editor)
 
@@ -59,7 +65,6 @@ func _on_algorithm_move_up(algorithm_editor: Node):
 	algorithm_editors.move_child(algorithm_editor, algorithm_editor.get_index() - 1)
 	
 
-
 # When an Algorithm requests to be moved down
 func _on_algorithm_move_down(algorithm_editor: Node):
 	# Don't go up if node is already last
@@ -73,6 +78,15 @@ func _on_algorithm_move_down(algorithm_editor: Node):
 # When an Algorithm changes one of its parameter sliders
 func _on_algorithm_parameter_changed(parameter, value, algorithm_editor):
 	algorithm_parameter_changed.emit(algorithm_editor.get_index(), parameter, value)
+
+
+# When an algorithm is clicked and requests to be marked as selected
+func _on_algorithm_select(algorithm_editor):
+	if currently_selected:
+		currently_selected.selected = false
+	algorithm_editor.selected = true
+	currently_selected = algorithm_editor
+	algorithm_selected.emit(algorithm_editor.get_index(), algorithm_editor.shader)
 
 
 func get_shader_name(index) -> ShaderMaterial:

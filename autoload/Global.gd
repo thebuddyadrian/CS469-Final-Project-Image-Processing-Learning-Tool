@@ -10,7 +10,8 @@ var algorithms = {
 			"min_value": 0.0, # Min value for the slider
 			"max_value": 8.0, # Max value for the slider
 			"default_value": 0.0, # Default value for the slider
-		}]
+		}],
+		"description": "Smoothing/blurring filter that convolves the image with weights following a Gaussian distribution."
 	},
 	"contrast": {
 		"num_params": 4,
@@ -81,7 +82,7 @@ var algorithms = {
 			"default_value": 0.0,
 			}]
 	},
-	"thresholding": {
+	"thresholding_rgb": {
 		"num_params": 3,
 		"parameters": [{
 			"param": "red_threshold",
@@ -100,6 +101,15 @@ var algorithms = {
 			"min_value": 0.0,
 			"max_value": 100.0,
 			"default_value": 50.0
+		}]
+	},
+	"thresholding": {
+		"num_params": 1,
+		"parameters": [{
+			"param": "threshold",
+			"min_value": 0.0,
+			"max_value": 255.0,
+			"default_value": 255.0/2
 		}]
 	},
 	"image_negative": {
@@ -183,3 +193,14 @@ var algorithms = {
 		}]
 	},
 }
+
+
+# Sort algorithms alphabetically
+func _ready() -> void:
+	var sorted_keys = algorithms.keys()
+	sorted_keys.sort()
+
+	var algorithms_sorted = {}
+	for key in sorted_keys:
+		algorithms_sorted[key] = algorithms[key]
+	algorithms = algorithms_sorted
