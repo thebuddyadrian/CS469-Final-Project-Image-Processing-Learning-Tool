@@ -91,3 +91,8 @@ func _on_algorithm_select(algorithm_editor):
 
 func get_shader_name(index) -> ShaderMaterial:
 	return algorithm_editors.get_child(index).shader
+
+
+func remove_all_algorithms():
+	for algorithm in algorithm_editors.get_children():
+		_on_algorithm_remove(algorithm)

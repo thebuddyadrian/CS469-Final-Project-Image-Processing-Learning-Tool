@@ -227,6 +227,8 @@ var algorithms = {
 }
 
 
+
+
 # Sort algorithms alphabetically
 func _ready() -> void:
 	var sorted_keys = algorithms.keys()

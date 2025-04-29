@@ -49,6 +49,7 @@ func add_shader(shader_name: String):
 	back_buffer_copy.rect.size = texture_rect.size
 	back_buffer_copy.rect.position = texture_rect.position
 	back_buffer_copy.name = shader_name
+	back_buffer_copy.set_meta("shader", shader_name)
 	shader_holder.add_child(back_buffer_copy, true)
 	
 	# Add a ColorRect which will filter the image (and other ColorRects) behind it
@@ -57,6 +58,7 @@ func add_shader(shader_name: String):
 	shader_material.shader = load("res://shaders/" + shader_name + ".gdshader")
 	color_rect.material = shader_material
 	color_rect.name = "ColorRect"
+	color_rect.set_meta("shader", shader_name)
 	back_buffer_copy.add_child(color_rect)
 	color_rect.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 
@@ -65,7 +67,7 @@ func add_shader(shader_name: String):
 func remove_shader(idx: int):
 	if shader_holder.get_child_count() <= idx:
 		return
-	shader_holder.remove_child(shader_holder.get_child(idx))
+	shader_holder.get_child(idx).queue_free()
 
 
 # Can be used to temporarily disable a shader
@@ -76,7 +78,7 @@ func set_shader_visible(idx: int, visible: bool):
 
 
 func get_shader_name(idx: int) -> String:
-	return shader_holder.get_child(idx).shader
+	return shader_holder.get_child(idx).get_meta("shader")
 
 
 # Get the shader material at a specific index
@@ -87,7 +89,7 @@ func get_shader_material(idx: int) -> ShaderMaterial:
 
 
 func change_shader_parameter(index, parameter, value):
-	get_shader_material(index).set_shader_parameter(parameter, value)
+	shader_holder.get_child(index).get_node("ColorRect").set_instance_shader_parameter(parameter, value)
 
 
 func move_shader_up(idx: int):
@@ -116,3 +118,35 @@ func choose_image(texture: Texture):
 		back_buffer_copy.rect.size = texture_rect.size
 		back_buffer_copy.rect.position = texture_rect.position
 		back_buffer_copy.get_node("ColorRect").set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+
+
+func get_shaders_as_dict_array() -> Array[Dictionary]:
+	var shaders: Array[Dictionary]
+	for back_buffer_copy in shader_holder.get_children():
+		var color_rect = back_buffer_copy.get_node("ColorRect") # Grab the ColorRect that applies the shader filter
+		var shader_name = color_rect.get_meta("shader")
+		var shader_dict = {} # To represent the shader data as a dictionary
+		shader_dict["shader"] = shader_name
+		shader_dict["params"] = {}
+	
+		for param in Global.algorithms[shader_name]["parameters"]:
+			var param_name = param["param"]
+			shader_dict["params"][param_name] = color_rect.get_instance_shader_parameter(param_name)
+			print("Got shader parameter for shader %s - %s:%s" % [shader_name, param_name, color_rect.get_instance_shader_parameter(param_name)])
+		shaders.append(shader_dict)
+
+	return shaders
+
+
+func remove_all_shaders():
+	for child in shader_holder.get_children():
+		child.free()
+
+
+func load_shaders_from_dict_array(dict_array: Array[Dictionary]):
+	remove_all_shaders()
+	for i in range(dict_array.size()):
+		var shader_dict = dict_array[i]
+		add_shader(shader_dict["shader"])
+		for param in shader_dict["params"].keys():
+			change_shader_parameter(i, param, shader_dict["params"][param])
