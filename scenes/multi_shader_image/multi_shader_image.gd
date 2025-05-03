@@ -89,7 +89,7 @@ func get_shader_material(idx: int) -> ShaderMaterial:
 
 
 func change_shader_parameter(index, parameter, value):
-	shader_holder.get_child(index).get_node("ColorRect").set_instance_shader_parameter(parameter, value)
+	get_shader_material(index).set_shader_parameter(parameter, value)
 
 
 func move_shader_up(idx: int):
@@ -131,7 +131,7 @@ func get_shaders_as_dict_array() -> Array[Dictionary]:
 	
 		for param in Global.algorithms[shader_name]["parameters"]:
 			var param_name = param["param"]
-			shader_dict["params"][param_name] = color_rect.get_instance_shader_parameter(param_name)
+			shader_dict["params"][param_name] = color_rect.material.get_shader_parameter(param_name)
 			print("Got shader parameter for shader %s - %s:%s" % [shader_name, param_name, color_rect.get_instance_shader_parameter(param_name)])
 		shaders.append(shader_dict)
 

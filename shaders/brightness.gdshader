@@ -1,10 +1,10 @@
 shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
-uniform float adjustment : hint_range(0.0, 5.0) = 1.00;
-uniform float skew_red : hint_range(0.0, 5.0) = 1.00;
-uniform float skew_blue : hint_range(0.0, 5.0) = 1.00;
-uniform float skew_green : hint_range(0.0, 5.0) = 1.00;
+uniform float adjustment : hint_range(-5.0, 5.0) = 1.00;
+uniform float skew_red : hint_range(-5.0, 5.0) = 1.00;
+uniform float skew_blue : hint_range(-5.0, 5.0) = 1.00;
+uniform float skew_green : hint_range(-5.0, 5.0) = 1.00;
 
 void fragment() {
 	// Called for every pixel the material is visible on.

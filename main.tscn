@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk6hcyg4ph6xs"]
+[gd_scene load_steps=7 format=3 uid="uid://bk6hcyg4ph6xs"]
 
 [ext_resource type="Script" uid="uid://x302m84ndusj" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bla1ogymi3cdi" path="res://scenes/multi_shader_image/multi_shader_image.tscn" id="2_0xm2m"]
@@ -6,9 +6,6 @@
 
 [sub_resource type="Theme" id="Theme_ig7tw"]
 default_font_size = 18
-
-[sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
-font_size = 11
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 32
@@ -107,12 +104,11 @@ text = "Quit Challenge"
 layout_mode = 2
 text = "New Challenge"
 
-[node name="Output" type="Label" parent="MatchTheFiltersUI"]
+[node name="Output" type="TextEdit" parent="MatchTheFiltersUI"]
 layout_mode = 0
 offset_top = 307.0
 offset_right = 1196.0
 offset_bottom = 603.0
-label_settings = SubResource("LabelSettings_lquwl")
 autowrap_mode = 2
 
 [node name="AlgorithmManager" parent="." instance=ExtResource("3_h2yge")]
