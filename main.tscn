@@ -49,19 +49,6 @@ offset_right = 131.0
 offset_bottom = 68.0
 text = "Load Custom Image"
 
-[node name="FixContrastUI" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BadContrastImage" parent="FixContrastUI" instance=ExtResource("2_0xm2m")]
-layout_mode = 0
-offset_right = 600.0
-offset_bottom = 400.0
-scale = Vector2(2, 2)
-canvas_size = Vector2(600, 400)
-
 [node name="MatchTheFiltersUI" type="Control" parent="."]
 visible = false
 anchors_preset = 0
