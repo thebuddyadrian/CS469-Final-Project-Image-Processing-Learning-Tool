@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="CS469 Image Processing Project"
+config/name="Image Processing Learning Tool"
 config/description="Enter an interesting project description here!"
 run/main_scene="uid://bk6hcyg4ph6xs"
 config/features=PackedStringArray("4.4")
