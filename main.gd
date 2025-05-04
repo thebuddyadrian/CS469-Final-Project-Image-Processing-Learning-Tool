@@ -3,6 +3,7 @@ extends Control
 @onready var algorithm_manager: PanelContainer = $AlgorithmManager # UI for managing and modifying different shaders
 @onready var multi_shader_image: SubViewportContainer = %MultiShaderImage # An image container that allows you to apply multiple shaders and reorder them
 @onready var file_dialog: FileDialog = $FileDialog
+@onready var internal_file_dialog: FileDialog = $InternalFileDialog
 @onready var algorithm_name: Label = $TabContainer/Description/AlgorithmName
 @onready var description: Label = $TabContainer/Description/Description
 @onready var number_of_filters: OptionButton = %NumberOfFilters
@@ -39,11 +40,20 @@ func _ready() -> void:
 
 
 func _on_choose_image_pressed() -> void:
+	internal_file_dialog.show()
+
+
+func _on_choose_custom_image_pressed() -> void:
 	file_dialog.show()
 
 
 func _on_file_dialog_file_selected(path:String) -> void:
-	multi_shader_image.choose_image(load(path))
+	var image = Image.new()
+	image.load(path)
+	var texture = ImageTexture.create_from_image(image)
+	multi_shader_image.choose_image(texture)
+	your_image.choose_image(texture)
+	target_image.choose_image(texture)
 
 
 func _on_algorithm_selected(_index, shader_name):

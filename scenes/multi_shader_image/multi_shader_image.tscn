@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bla1ogymi3cdi"]
 
-[ext_resource type="Texture2D" uid="uid://bqv4ug5qbr2ka" path="res://images/Bliss_(Windows_XP).png" id="1_a2a78"]
 [ext_resource type="Script" uid="uid://b2haj4ue6cyiw" path="res://scenes/multi_shader_image/multi_shader_image.gd" id="1_wieso"]
+[ext_resource type="Texture2D" uid="uid://waa65iind31v" path="res://images/Bliss.jpg" id="2_wieso"]
 
 [node name="MultiShaderImage" type="SubViewportContainer"]
 offset_right = 640.0
@@ -18,13 +18,13 @@ render_target_update_mode = 4
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 96.0
-offset_right = -96.0
+offset_left = 80.0
+offset_right = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_a2a78")
+texture = ExtResource("2_wieso")
 expand_mode = 1
 
 [node name="InternalShaderHolder" type="Control" parent="ImageViewport"]

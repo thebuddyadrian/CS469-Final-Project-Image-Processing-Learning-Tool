@@ -28,12 +28,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ChooseImage" type="Button" parent="FreePlayUI"]
-layout_mode = 0
-offset_right = 131.0
-offset_bottom = 34.0
-text = "Choose Image"
-
 [node name="MultiShaderImage" parent="FreePlayUI" instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
 layout_mode = 0
@@ -41,6 +35,19 @@ offset_right = 600.0
 offset_bottom = 400.0
 scale = Vector2(2, 2)
 canvas_size = Vector2(600, 400)
+
+[node name="ChooseImage" type="Button" parent="FreePlayUI"]
+layout_mode = 0
+offset_right = 131.0
+offset_bottom = 34.0
+text = "Choose Standard Image"
+
+[node name="ChooseCustomImage" type="Button" parent="FreePlayUI"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 131.0
+offset_bottom = 68.0
+text = "Load Custom Image"
 
 [node name="MatchTheFiltersUI" type="Control" parent="."]
 visible = false
@@ -145,7 +152,17 @@ initial_position = 1
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.png", "*.jpg", "*.jpeg")
+filters = PackedStringArray("*.png", "*.jpg", "*.jpeg", "*.bmp")
+show_hidden_files = true
+
+[node name="InternalFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+file_mode = 0
+root_subfolder = "images"
+filters = PackedStringArray("*.png", "*.jpg", "*.jpeg", "*.bmp")
 show_hidden_files = true
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -236,9 +253,11 @@ size_flags_horizontal = 0
 text = "Start Challenge"
 
 [connection signal="pressed" from="FreePlayUI/ChooseImage" to="." method="_on_choose_image_pressed"]
+[connection signal="pressed" from="FreePlayUI/ChooseCustomImage" to="." method="_on_choose_custom_image_pressed"]
 [connection signal="pressed" from="MatchTheFiltersUI/Buttons/Submit" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="MatchTheFiltersUI/Buttons/ShowAnswer" to="." method="_on_show_answer_pressed"]
 [connection signal="pressed" from="MatchTheFiltersUI/Buttons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MatchTheFiltersUI/Buttons/Restart" to="." method="_on_restart_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="InternalFileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="TabContainer/Challenges/ChallengeList/MatchTheFilters/HBoxContainer/StartMatchFilters" to="." method="_on_start_match_filters_pressed"]
