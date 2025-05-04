@@ -101,11 +101,12 @@ func _on_start_match_filters_pressed() -> void:
 			shader_dict["params"][param_name] = value
 		shader_array.append(shader_dict)
 	target_image.load_shaders_from_dict_array(shader_array)
-
+	$Notice.show()
 
 func _on_quit_pressed() -> void:
 	match_the_filters_ui.hide()
 	free_play_ui.show()
+	$Notice.hide()
 
 
 func _on_show_answer_pressed() -> void:
