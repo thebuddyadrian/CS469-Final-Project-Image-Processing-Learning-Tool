@@ -49,6 +49,19 @@ offset_right = 131.0
 offset_bottom = 68.0
 text = "Load Custom Image"
 
+[node name="FixContrastUI" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BadContrastImage" parent="FixContrastUI" instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 400.0
+scale = Vector2(2, 2)
+canvas_size = Vector2(600, 400)
+
 [node name="MatchTheFiltersUI" type="Control" parent="."]
 visible = false
 anchors_preset = 0
@@ -209,6 +222,7 @@ offset_right = -12.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="TabContainer/Challenges/ChallengeList"]
 visible = false
@@ -229,7 +243,7 @@ layout_mode = 2
 
 [node name="Description" type="Label" parent="TabContainer/Challenges/ChallengeList/MatchTheFilters"]
 layout_mode = 2
-text = "Match The Filters: Random filters will be applied to an example image. You must find the correct filters and values to match the example image as close as posible."
+text = "Match The Filters: Random filters will be applied to an example image. You must find the correct filters and values to match the example image as close as possible."
 autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Challenges/ChallengeList/MatchTheFilters"]

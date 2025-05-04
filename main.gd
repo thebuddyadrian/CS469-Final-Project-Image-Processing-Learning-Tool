@@ -136,7 +136,7 @@ func _on_submit_pressed() -> void:
 
 		var target_filter = target_dict_array[i]
 		var your_filter = your_dict_array[i]
-		output_string += "Filter %s: %s\n" % [your_filter["shader"], i + 1]
+		output_string += "Filter %s: %s\n" % [i + 1, your_filter["shader"]]
 		
 		
 		 # Wrong filter type = 0 score for this filter
